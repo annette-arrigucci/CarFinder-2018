@@ -170,7 +170,7 @@ namespace CarFinder.Controllers
             car.Image = imageResults.First().MediaUrl;*/
 
             var client2 = new HttpClient();
-            var accountKey = ConfigurationManager.AppSettings["searchKey"];
+            var accountKey = ConfigurationManager.AppSettings["arrigucci-searchimages"];
             // Request headers  
             client2.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", accountKey);
             // Request parameters
@@ -178,12 +178,12 @@ namespace CarFinder.Controllers
             string count = "1";
             string offset = "0";
             //string mkt = "en-us";
-            var ImgSearchEndPoint = "https://api.cognitive.microsoft.com/bing/v7.0/search?";
+            var ImgSearchEndPoint = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?";
             var result = await client2.GetAsync(string.Format("{0}q={1}&count={2}&offset={3}", ImgSearchEndPoint, WebUtility.UrlEncode(query), count, offset));
             result.EnsureSuccessStatusCode();
             var json = await result.Content.ReadAsStringAsync();
             dynamic data = JObject.Parse(json);
-            var items = data.images.value;
+            var items = data.value;
             car.Image = items[0].contentUrl;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -262,7 +262,7 @@ namespace CarFinder.Controllers
             car.Image = imageResults.First().MediaUrl;*/
 
             var client2 = new HttpClient();
-            var accountKey = ConfigurationManager.AppSettings["searchKey"];
+            var accountKey = ConfigurationManager.AppSettings["arrigucci-searchimages"];
             // Request headers  
             client2.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", accountKey);
             // Request parameters
@@ -270,12 +270,12 @@ namespace CarFinder.Controllers
             string count = "1";
             string offset = "0";
             //string mkt = "en-us";
-            var ImgSearchEndPoint = "https://api.cognitive.microsoft.com/bing/v7.0/search?";
+            var ImgSearchEndPoint = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?";
             var result = await client2.GetAsync(string.Format("{0}q={1}&count={2}&offset={3}", ImgSearchEndPoint, WebUtility.UrlEncode(query), count, offset));
             result.EnsureSuccessStatusCode();
             var json = await result.Content.ReadAsStringAsync();
             dynamic data = JObject.Parse(json);
-            var items = data.images.value;
+            var items = data.value;
             car.Image = items[0].contentUrl;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
